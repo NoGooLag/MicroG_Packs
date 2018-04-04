@@ -29,28 +29,112 @@ ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 
 ui_print(" Removing any conflicting apps...");
+
+# Google Packages
+#
 # App
 delete_recursive(
+	"/system/app/Books",
+	"/system/app/CalculatorGooglePrebuilt",
+	"/system/app/CalendarGooglePrebuilt",
+	"/system/app/Chrome",
+	"/system/app/CloudPrint2",
+	"/system/app/Drive",
+	"/system/app/Duo",
+	"/system/app/EditorsDocs",
+	"/system/app/EditorsSheets",
+	"/system/app/EditorsSlides",
+	"/system/app/FaceLock",
+	"/system/app/FitnessPrebuilt",
 	"/system/app/GoogleCalendarSyncAdapter",
-	"/system/app/GoogleContactsSyncAdapter"
+	"/system/app/GoogleCamera",
+	"/system/app/GoogleCameraLegacy",
+	"/system/app/GoogleContacts",
+	"/system/app/GoogleContactsSyncAdapter",
+	"/system/app/GoogleExtShared",
+	"/system/app/GoogleHome",
+	"/system/app/GooglePrintRecommendationService",
+	"/system/app/GoogleTTS",
+	"/system/app/GoogleVrCore",
+	"/system/app/Hangouts",
+	"/system/app/LatinIMEGooglePrebuilt",
+	"/system/app/Maps",
+	"/system/app/Music2",
+	"/system/app/Newsstand",
+	"/system/app/NexusLauncherIcons",
+	"/system/app/Photos",
+	"/system/app/Photos",
+	"/system/app/PlayGames",
+	"/system/app/PlusOne",
+	"/system/app/PrebuiltBugle",
+	"/system/app/PrebuiltDeskClockGoogle",
+	"/system/app/PrebuiltExchange3Google",
+	"/system/app/PrebuiltGmail",
+	"/system/app/PrebuiltKeep",
+	"/system/app/PrebuiltNewsWeather",
+	"/system/app/talkback",
+	"/system/app/Videos",
+	"/system/app/WallpaperPickerGooglePrebuilt",
+	"/system/app/WebViewGoogle",
+	"/system/app/WebViewStub",
+	"/system/app/YouTube"
 );
 # Priv-App
 delete_recursive(
-	"/system/priv-app/GoogleCalendarSyncAdapter",
-	"/system/priv-app/GoogleContactsSyncAdapter"
+	"/system/priv-app/ConfigUpdater",
+	"/system/priv-app/GmsCoreSetupPrebuilt",
+	"/system/priv-app/GoogleBackupTransport",
+	"/system/priv-app/GoogleDialer",
+	"/system/priv-app/GoogleExtServices",
+	"/system/priv-app/GoogleFeedback",
+	"/system/priv-app/GoogleOneTimeInitializer",
+	"/system/priv-app/GooglePackageInstaller",
+	"/system/priv-app/GooglePartnerSetup",
+	"/system/priv-app/GoogleServicesFramework",
+	"/system/priv-app/NexusLauncherPrebuilt",
+	"/system/priv-app/Phonesky",
+	"/system/priv-app/PrebuiltGmsCore",
+	"/system/priv-app/SetupWizard",
+	"/system/priv-app/StorageManagerGoogle",
+	"/system/priv-app/TagGoogle",
+	"/system/priv-app/Velvet"
 );
-# App
+# Extras
 delete_recursive(
-	"/system/app/DejaVuLocationService",
-	"/system/app/DroidGuard",
-	"/system/app/GoogleServicesFramework",
-	"/system/app/LocalGSMNLPBackend",
-	"/system/app/LocalWiFiNLPBackend",
-	"/system/app/MozillaUnifiedNLPBackend",
-	"/system/app/NominatimNLPBackend",
-	"/system/app/Phonesky",
-	"/system/app/PrebuiltGmsCore"
+	"/system/etc/default-permissions/default-permissions.xml",
+	"/system/etc/default-permissions/opengapps-permissions.xml",
+	"/system/etc/permissions/com.google.android.camera2.xml",
+	"/system/etc/permissions/com.google.android.camera.experimental2016.xml",
+	"/system/etc/permissions/com.google.android.dialer.support.xml",
+	"/system/etc/permissions/com.google.android.maps.xml",
+	"/system/etc/permissions/com.google.android.media.effects.xml",
+	"/system/etc/permissions/com.google.vr.platform.xml",
+	"/system/etc/permissions/com.google.widevine.software.drm.xml",
+	"/system/etc/permissions/privapp-permissions-google.xml",
+	"/system/etc/preferred-apps/google.xml",
+	"/system/etc/sysconfig/dialer_experience.xml",
+	"/system/etc/sysconfig/framework-sysconfig.xml",
+	"/system/etc/sysconfig/google_build.xml",
+	"/system/etc/sysconfig/google_vr_build.xml",
+	"/system/etc/sysconfig/google.xml",
+	"/system/etc/sysconfig/whitelist_com.android.omadm.service.xml",
+	"/system/framework/com.google.android.camera2.jar",
+	"/system/framework/com.google.android.camera.experimental2016.jar",
+	"/system/framework/com.google.android.dialer.support.jar",
+	"/system/framework/com.google.android.maps.jar",
+	"/system/framework/com.google.android.media.effects.jar",
+	"/system/framework/com.google.vr.platform.jar",
+	"/system/framework/com.google.widevine.software.drm.jar",
+	"/system/lib64/libfacenet.so",
+	"/system/lib64/libfilterpack_facedetect.so",
+	"/system/lib64/libfrsdk.so",
+	"/system/lib64/libjni_latinimegoogle.so",
+	"/system/lib/libfilterpack_facedetect.so",
+	"/system/lib/libfrsdk.so"
 );
+
+# Non-Google Packages
+#
 # Priv-App
 delete_recursive(
 	"/system/priv-app/DejaVuLocationService",
