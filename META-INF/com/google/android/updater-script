@@ -81,6 +81,7 @@ delete_recursive(
 );
 # Priv-App
 delete_recursive(
+	"/system/priv-app/AndroidPlatformServices",
 	"/system/priv-app/ConfigUpdater",
 	"/system/priv-app/GmsCoreSetupPrebuilt",
 	"/system/priv-app/GoogleBackupTransport",
@@ -97,7 +98,8 @@ delete_recursive(
 	"/system/priv-app/SetupWizard",
 	"/system/priv-app/StorageManagerGoogle",
 	"/system/priv-app/TagGoogle",
-	"/system/priv-app/Velvet"
+	"/system/priv-app/Velvet",
+	"/system/priv-app/Turbo"
 );
 # Extras
 delete_recursive(
