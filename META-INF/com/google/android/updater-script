@@ -135,10 +135,18 @@ delete_recursive(
 
 # Non-Google Packages
 #
+# App
+delete_recursive(
+	"/system/app/GsfProxy",
+	"/system/app/MozillaNlpBackend",
+	"/system/app/NominatimNlpBackend"
+);
 # Priv-App
 delete_recursive(
 	"/system/priv-app/DejaVuLocationService",
 	"/system/priv-app/DroidGuard",
+	"/system/priv-app/FakeStore",
+	"/system/priv-app/GmsCore",
 	"/system/priv-app/GoogleServicesFramework",
 	"/system/priv-app/LocalGSMNLPBackend",
 	"/system/priv-app/LocalWiFiNLPBackend",
