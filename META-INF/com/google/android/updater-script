@@ -1,0 +1,87 @@
+ui_print(" ");
+ui_print(" ********* Custom MicroG installer *********");
+ui_print(" * Fully working MicroG pack like no other *");
+ui_print(" ");
+ui_print(" Included packages:");
+ui_print(" - Latest MicroG Services Core");
+ui_print(" - Latest MicroG Services Framework Proxy");
+ui_print(" - Latest MicroG DroidGuard Helper");
+ui_print(" - Latest Deja Vu Location Service");
+ui_print(" - Latest Local GSM Location Service");
+ui_print(" - Latest Local Wi-Fi Location Service");
+ui_print(" - Latest Mozilla Unified NLP Backend");
+ui_print(" - Latest Nominatim NLP Backend");
+ui_print(" - Google Calendar Sync Adapter");
+ui_print(" - Google Contacts Sync Adapter");
+ui_print(" - Google Camera Support");
+ui_print(" - Google Maps Support");
+ui_print(" - Latest Google Play Store");
+ui_print(" - OTA auto backup/restore script");
+ui_print(" ");
+ui_print(" Repack date      : Month, day year");
+ui_print(" Official Channel : @NoGooLag (Telegram)");
+ui_print(" ");
+ui_print(" *******************************************");
+ui_print(" ");
+
+ui_print(" Mounting /system...");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+
+ui_print(" Removing any conflicting apps...");
+# App
+delete_recursive(
+	"/system/app/GoogleCalendarSyncAdapter",
+	"/system/app/GoogleContactsSyncAdapter"
+);
+# Priv-App
+delete_recursive(
+	"/system/priv-app/GoogleCalendarSyncAdapter",
+	"/system/priv-app/GoogleContactsSyncAdapter"
+);
+# App
+delete_recursive(
+	"/system/app/DejaVuLocationService",
+	"/system/app/DroidGuard",
+	"/system/app/GoogleServicesFramework",
+	"/system/app/LocalGSMNLPBackend",
+	"/system/app/LocalWiFiNLPBackend",
+	"/system/app/MozillaUnifiedNLPBackend",
+	"/system/app/NominatimNLPBackend",
+	"/system/app/Phonesky",
+	"/system/app/PrebuiltGmsCore"
+);
+# Priv-App
+delete_recursive(
+	"/system/priv-app/DejaVuLocationService",
+	"/system/priv-app/DroidGuard",
+	"/system/priv-app/GoogleServicesFramework",
+	"/system/priv-app/LocalGSMNLPBackend",
+	"/system/priv-app/LocalWiFiNLPBackend",
+	"/system/priv-app/MozillaUnifiedNLPBackend",
+	"/system/priv-app/NominatimNLPBackend",
+	"/system/priv-app/Phonesky",
+	"/system/priv-app/PrebuiltGmsCore"
+);
+
+ui_print(" Installing to /system...");
+assert(package_extract_dir("system", "/system") == "t");
+
+ui_print(" Setting permissions...");
+assert(set_metadata_recursive("/system/addon.d", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/etc/default-permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/etc/permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/etc/preferred-apps", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/etc/sysconfig", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/framework", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+assert(set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
+set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
+
+ui_print(" Unmounting /system...");
+unmount("/system");
+
+ui_print(" Done!");
+ui_print(" ");
+ui_print(" *******************************************");
+ui_print(" ");
