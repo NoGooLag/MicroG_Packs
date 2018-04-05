@@ -14,8 +14,6 @@ app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
 app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
 etc/default-permissions/default-permissions.xml
 etc/default-permissions/opengapps-permissions.xml
-etc/permissions/com.google.android.camera.experimental2016.xml
-etc/permissions/com.google.android.camera2.xml
 etc/permissions/com.google.android.maps.xml
 etc/permissions/com.google.android.media.effects.xml
 etc/permissions/com.google.widevine.software.drm.xml
@@ -24,12 +22,12 @@ etc/preferred-apps/google.xml
 etc/sysconfig/framework-sysconfig.xml
 etc/sysconfig/google.xml
 etc/sysconfig/google_build.xml
+etc/sysconfig/microg_packages
 etc/sysconfig/whitelist_com.android.omadm.service.xml
-framework/com.google.android.camera.experimental2016.jar
-framework/com.google.android.camera2.jar
 framework/com.google.android.maps.jar
 framework/com.google.android.media.effects.jar
 framework/com.google.widevine.software.drm.jar
+lib/libjni_latinimegoogle.so
 lib64/libjni_latinimegoogle.so
 priv-app/DejaVuLocationService/DejaVuLocationService.apk
 priv-app/DroidGuard/DroidGuard.apk
