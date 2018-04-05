@@ -28,6 +28,17 @@ ui_print(" Mounting /system...");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 
+# Check CPU architecture
+# Abort if not ARM
+if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
+then
+	ui_print(" ARM CPU Architecture detected");
+	ui_print(" ");
+else
+	abort(" CPU doesn't have an ARM architecture, aborting...");
+	ui_print(" *******************************************");
+endif;
+
 ui_print(" Removing any conflicting apps...");
 
 # Google Packages
@@ -131,8 +142,10 @@ delete_recursive(
 	"/system/lib64/libfilterpack_facedetect.so",
 	"/system/lib64/libfrsdk.so",
 	"/system/lib64/libjni_latinimegoogle.so",
+	"/system/lib/libfacenet.so",
 	"/system/lib/libfilterpack_facedetect.so",
-	"/system/lib/libfrsdk.so"
+	"/system/lib/libfrsdk.so",
+	"/system/lib/libjni_latinimegoogle.so"
 );
 
 # Non-Google Packages
@@ -170,7 +183,18 @@ assert(set_metadata_recursive("/system/etc/preferred-apps", "uid", 0, "gid", 0, 
 assert(set_metadata_recursive("/system/etc/sysconfig", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/framework", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
+
+# Swipe arc specific lib
+if is_substring("64", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
+then
+	ui_print(" Installing a 64bit Swipe library...");
+	assert(package_extract_dir("lib64", "/system/lib64") == "t");
+	set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
+else
+	ui_print(" Installing a 32bit Swipe library...");
+	assert(package_extract_dir("lib", "/system/lib") == "t");
+	set_perm(0, 2000, 0644, "/system/lib/libjni_latinimegoogle.so");
+endif;
 
 ui_print(" Unmounting /system...");
 unmount("/system");
