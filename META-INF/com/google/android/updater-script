@@ -18,7 +18,7 @@ ui_print(" - Google Maps Support");
 ui_print(" - Latest Google Play Store");
 ui_print(" - OTA auto backup/restore script");
 ui_print(" ");
-ui_print(" Repack date      : Month, day year");
+ui_print(" Repack date      : April, 5 2018");
 ui_print(" Official Channel : @NoGooLag (Telegram)");
 ui_print(" ");
 ui_print(" *******************************************");
@@ -32,7 +32,8 @@ run_program("/sbin/busybox", "mount", "/system");
 # Abort if not ARM
 if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
 then
-	ui_print(" ARM CPU Architecture detected");
+	ui_print(" ");
+	ui_print(" ARM CPU Architecture detected, proceeding...");
 	ui_print(" ");
 else
 	abort(" CPU doesn't have an ARM architecture, aborting...");
