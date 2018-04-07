@@ -10,14 +10,8 @@
 
 list_files() {
 cat <<EOF
-app/DejaVuLocationService/DejaVuLocationService.apk
-app/DroidGuard/DroidGuard.apk
 app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
 app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
-app/LocalGSMNLPBackend/LocalGSMNLPBackend.apk
-app/LocalWiFiNLPBackend/LocalWiFiNLPBackend.apk
-app/MozillaUnifiedNLPBackend/MozillaUnifiedNLPBackend.apk
-app/NominatimNLPBackend/NominatimNLPBackend.apk
 etc/default-permissions/default-permissions.xml
 etc/default-permissions/opengapps-permissions.xml
 etc/permissions/com.google.android.maps.xml
@@ -35,7 +29,13 @@ framework/com.google.android.media.effects.jar
 framework/com.google.widevine.software.drm.jar
 lib64/libjni_latinimegoogle.so
 lib/libjni_latinimegoogle.so
+priv-app/DejaVuLocationService/DejaVuLocationService.apk
+priv-app/DroidGuard/DroidGuard.apk
 priv-app/GoogleServicesFramework/GoogleServicesFramework.apk
+priv-app/LocalGSMNLPBackend/LocalGSMNLPBackend.apk
+priv-app/LocalWiFiNLPBackend/LocalWiFiNLPBackend.apk
+priv-app/MozillaUnifiedNLPBackend/MozillaUnifiedNLPBackend.apk
+priv-app/NominatimNLPBackend/NominatimNLPBackend.apk
 priv-app/Phonesky/Phonesky.apk
 priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk
 EOF
