@@ -19,11 +19,13 @@ app/LocalWiFiNLPBackend/LocalWiFiNLPBackend.apk
 app/MozillaUnifiedNLPBackend/MozillaUnifiedNLPBackend.apk
 app/NominatimNLPBackend/NominatimNLPBackend.apk
 etc/default-permissions/default-permissions.xml
+etc/default-permissions/nogoolag-permissions.xml
 etc/default-permissions/opengapps-permissions.xml
 etc/permissions/com.google.android.maps.xml
 etc/permissions/com.google.android.media.effects.xml
 etc/permissions/com.google.widevine.software.drm.xml
 etc/permissions/privapp-permissions-google.xml
+etc/permissions/privapp-permissions-nogoolag.xml
 etc/preferred-apps/google.xml
 etc/sysconfig/framework-sysconfig.xml
 etc/sysconfig/google_build.xml

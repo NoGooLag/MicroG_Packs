@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+
+<!-- Copyright (C) 2018 NoGooLag
+
+    The Open GApps scripts are free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version, w/Open GApps installable zip exception.
+
+    These scripts are distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+-->
+
+<!--
+    This file contains permissions to be granted by default. Default
+    permissions are granted to special platform components and to apps
+    that are approved to get default grants. The special components
+    are apps that are expected to work out-of-the-box as they provide
+    core use cases. Granting these permissions could prevent issues on
+    some ROMs or non-clean installations.
+-->
+
+<exceptions>
+
+   <!--
+    The exceptions below have been set by NoGooLag as factory defaults
+
+    Our packages are:
+    - DejaVu Location Service
+    - Google Calendar Sync Adapter
+    - Google Contacts Sync Adapter
+    - Google Play Store
+    - Local GSM NLP Backend
+    - Local Wi-Fi NLP Backend
+    - MicroG DroidGuard Helper
+    - MicroG GMS Core
+    - MicroG GSF Proxy
+    - Mozilla Unified NLP Backend
+    - Nominatim NLP Backend
+    -->
+
+    <!-- DejaVu Location Service -->
+    <exception
+            package="org.fitchfamily.android.dejavu">
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.CHANGE_WIFI_STATE" fixed="false"/>
+    </exception>
+
+    <!-- Google Calendar Sync Adapter -->
+    <exception
+            package="com.google.android.syncadapters.calendar">
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.READ_CALENDAR" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_SETTINGS" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_STATS" fixed="false"/>
+        <permission name="android.permission.SUBSCRIBED_FEEDS_READ" fixed="false"/>
+        <permission name="android.permission.SUBSCRIBED_FEEDS_WRITE" fixed="false"/>
+        <permission name="android.permission.USE_CREDENTIALS" fixed="false"/>
+        <permission name="android.permission.WRITE_CALENDAR" fixed="false"/>
+        <permission name="android.permission.WRITE_SYNC_SETTINGS" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH" fixed="false"/>
+        <permission name="com.google.android.providers.gsf.permission.READ_GSERVICES" fixed="false"/>
+    </exception>
+
+    <!-- Google Contacts Sync Adapter -->
+    <exception
+            package="com.google.android.syncadapters.contacts">
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_SETTINGS" fixed="false"/>
+        <permission name="android.permission.READ_SYNC_STATS" fixed="false"/>
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED" fixed="false"/>
+        <permission name="android.permission.SUBSCRIBED_FEEDS_READ" fixed="false"/>
+        <permission name="android.permission.SUBSCRIBED_FEEDS_WRITE" fixed="false"/>
+        <permission name="android.permission.USE_CREDENTIALS" fixed="false"/>
+        <permission name="android.permission.WRITE_CONTACTS" fixed="false"/>
+        <permission name="android.permission.WRITE_SYNC_SETTINGS" fixed="false"/>
+        <permission name="com.google.android.gms.permission.CONTACTS_SYNC_DELEGATION" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH.cp" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH" fixed="false"/>
+        <permission name="com.google.android.providers.gsf.permission.READ_GSERVICES" fixed="false"/>
+        <permission name="com.google.android.providers.gsf.permission.WRITE_GSERVICES" fixed="false"/>
+        <permission name="com.google.android.syncadapters.contacts.permission.GAL_SEARCH" fixed="false"/>
+    </exception>
+
+    <!-- Google Play Store -->
+    <exception
+            package="com.android.vending">
+        <permission name="android.Manifest.permission.SUBSTITUTE_NOTIFICATION_APP_NAME" fixed="false"/>
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_DOWNLOAD_MANAGER_ADVANCED" fixed="false"/>
+        <permission name="android.permission.ACCESS_DOWNLOAD_MANAGER" fixed="false"/>
+        <permission name="android.permission.ACCESS_INSTANT_APPS" fixed="false"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.ALLOCATE_AGGRESSIVE" fixed="false"/>
+        <permission name="android.permission.AUTHENTICATE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.BACKUP" fixed="false"/>
+        <permission name="android.permission.BATTERY_STATS" fixed="false"/>
+        <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE" fixed="false"/>
+        <permission name="android.permission.CHANGE_DEVICE_IDLE_TEMP_WHITELIST" fixed="false"/>
+        <permission name="android.permission.CHANGE_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.CLEAR_APP_CACHE" fixed="false"/>
+        <permission name="android.permission.CONNECTIVITY_INTERNAL" fixed="false"/>
+        <permission name="android.permission.DELETE_PACKAGES" fixed="false"/>
+        <permission name="android.permission.DUMP" fixed="false"/>
+        <permission name="android.permission.FORCE_STOP_PACKAGES" fixed="false"/>
+        <permission name="android.permission.FOREGROUND_SERVICE" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS maxSdkVersion=22" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED" fixed="false"/>
+        <permission name="android.permission.GET_APP_OPS_STATS" fixed="false"/>
+        <permission name="android.permission.GET_PACKAGE_SIZE" fixed="false"/>
+        <permission name="android.permission.GET_TASKS" fixed="false"/>
+        <permission name="android.permission.GRANT_RUNTIME_PERMISSIONS" fixed="false"/>
+        <permission name="android.permission.INSTALL_GRANT_RUNTIME_PERMISSIONS" fixed="false"/>
+        <permission name="android.permission.INSTALL_PACKAGES" fixed="false"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.MANAGE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.MANAGE_APP_OPS_MODES" fixed="false"/>
+        <permission name="android.permission.MANAGE_USERS" fixed="false"/>
+        <permission name="android.permission.NFC" fixed="false"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS" fixed="false"/>
+        <permission name="android.permission.PACKAGE_VERIFICATION_AGENT" fixed="false"/>
+        <permission name="android.permission.READ_APP_BADGE" fixed="false"/>
+        <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+        <permission name="android.permission.READ_RUNTIME_PROFILES" fixed="false"/>
+        <permission name="android.permission.READ_SMS" fixed="false"/>
+        <permission name="android.permission.REAL_GET_TASKS" fixed="false"/>
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED" fixed="false"/>
+        <permission name="android.permission.RECEIVE_SMS" fixed="false"/>
+        <permission name="android.permission.REVOKE_RUNTIME_PERMISSIONS" fixed="false"/>
+        <permission name="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS" fixed="false"/>
+        <permission name="android.permission.SEND_SMS" fixed="false"/>
+        <permission name="android.permission.SEND_SMS_NO_CONFIRMATION" fixed="false"/>
+        <permission name="android.permission.SET_PREFERRED_APPLICATIONS" fixed="false"/>
+        <permission name="android.permission.STATUS_BAR" fixed="false"/>
+        <permission name="android.permission.UPDATE_DEVICE_STATS" fixed="false"/>
+        <permission name="android.permission.USE_CREDENTIALS" fixed="false"/>
+        <permission name="android.permission.USE_FINGERPRINT" fixed="false"/>
+        <permission name="android.permission.WAKE_LOCK" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" fixed="false"/>
+        <permission name="android.permission.WRITE_SETTINGS" fixed="false"/>
+        <permission name="com.anddoes.launcher.permission.UPDATE_COUNT" fixed="false"/>
+        <permission name="com.android.launcher.permission.INSTALL_SHORTCUT" fixed="false"/>
+        <permission name="com.android.vending.appdiscoveryservice.permission.ACCESS_APP_DISCOVERY_SERVICE" fixed="false"/>
+        <permission name="com.android.vending.billing.ADD_CREDIT_CARD" fixed="false"/>
+        <permission name="com.android.vending.billing.BILLING_ACCOUNT_SERVICE" fixed="false"/>
+        <permission name="com.android.vending.BILLING" fixed="false"/>
+        <permission name="com.android.vending.billing.IN_APP_NOTIFY.permission.C2D_MESSAGE" fixed="false"/>
+        <permission name="com.android.vending.billing.IN_APP_NOTIFY.permission.C2D_MESSAGE" fixed="false"/>
+        <permission name="com.android.vending.CHECK_LICENSE" fixed="false"/>
+        <permission name="com.android.vending.INTENT_VENDING_ONLY" fixed="false"/>
+        <permission name="com.android.vending.p2p.APP_INSTALL_API" fixed="false"/>
+        <permission name="com.android.vending.permission.C2D_MESSAGE" fixed="false"/>
+        <permission name="com.android.vending.permission.C2D_MESSAGE" fixed="false"/>
+        <permission name="com.android.vending.setup.PLAY_SETUP_SERVICE" fixed="false"/>
+        <permission name="com.android.vending.TOS_ACKED" fixed="false"/>
+        <permission name="com.android.vending.TOS_ACKED" fixed="false"/>
+        <permission name="com.google.android.c2dm.permission.RECEIVE" fixed="false"/>
+        <permission name="com.google.android.finsky.permission.ACCESS_INSTANT_APP_NOTIFICATION_ENFORCEMENT" fixed="false"/>
+        <permission name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" fixed="false"/>
+        <permission name="com.google.android.finsky.permission.GEARHEAD_SERVICE" fixed="false"/>
+        <permission name="com.google.android.finsky.permission.INSTANT_APP_STATE" fixed="false"/>
+        <permission name="com.google.android.finsky.permission.INSTANT_APP_STATE" fixed="false"/>
+        <permission name="com.google.android.gms.permission.AD_ID_NOTIFICATION" fixed="false"/>
+        <permission name="com.google.android.gms.permission.CAR" fixed="false"/>
+        <permission name="com.google.android.gms.WRITE_VERIFY_APPS_CONSENT" fixed="false"/>
+        <permission name="com.google.android.partnersetup.permission.WRITE_APP_PROVIDER" fixed="false"/>
+        <permission name="com.google.android.providers.gsf.permission.READ_GSERVICES" fixed="false"/>
+        <permission name="com.google.android.providers.gsf.permission.WRITE_GSERVICES" fixed="false"/>
+        <permission name="com.google.android.vending.verifier.ACCESS_VERIFIER" fixed="false"/>
+        <permission name="com.htc.launcher.permission.READ_SETTINGS" fixed="false"/>
+        <permission name="com.htc.launcher.permission.UPDATE_SHORTCUT" fixed="false"/>
+        <permission name="com.huawei.android.launcher.permission.CHANGE_BADGE" fixed="false"/>
+        <permission name="com.huawei.android.launcher.permission.READ_SETTINGS" fixed="false"/>
+        <permission name="com.huawei.android.launcher.permission.WRITE_SETTINGS" fixed="false"/>
+        <permission name="com.majeur.launcher.permission.UPDATE_BADGE" fixed="false"/>
+        <permission name="com.oppo.launcher.permission.READ_SETTINGS" fixed="false"/>
+        <permission name="com.oppo.launcher.permission.WRITE_SETTINGS" fixed="false"/>
+        <permission name="com.sec.android.provider.badge.permission.READ" fixed="false"/>
+        <permission name="com.sec.android.provider.badge.permission.WRITE" fixed="false"/>
+        <permission name="com.sonyericsson.home.permission.BROADCAST_BADGE" fixed="false"/>
+        <permission name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" fixed="false"/>
+        <permission name="org.chromium.arc.apkcacheprovider.permission.READ_CACHE" fixed="false"/>
+        <permission name="org.chromium.arc.apkcacheprovider.permission.WRITE_CACHE" fixed="false"/>
+    </exception>
+
+    <!-- Local GSM NLP Backend -->
+    <exception
+            package="org.fitchfamily.android.gsmlocation">
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.WAKE_LOCK" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+    </exception>
+
+    <!-- Local Wi-Fi NLP Backend -->
+    <exception
+            package="org.fitchfamily.android.wifi_backend">
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.CHANGE_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+    </exception>
+
+    <!-- MicroG DroidGuard Helper -->
+    <exception
+            package="org.microg.gms.droidguard">
+        <permission name="android.permission.INTERNET" fixed="false"/>
+    </exception>
+
+    <!-- MicroG GMS Core -->
+    <exception
+            package="com.google.android.gms">
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_COARSE_UPDATES" fixed="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.AUTHENTICATE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.FAKE_PACKAGE_SIGNATURE" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.INSTALL_LOCATION_PROVIDER" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.MANAGE_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED" fixed="false"/>
+        <permission name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" fixed="false"/>
+        <permission name="android.permission.USE_CREDENTIALS" fixed="false"/>
+        <permission name="android.permission.WAKE_LOCK" fixed="false"/>
+        <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
+        <permission name="com.android.settings.INJECT_SETTINGS" fixed="false"/>
+        <permission name="com.google.android.c2dm.permission.RECEIVE" fixed="false"/>
+        <permission name="com.google.android.c2dm.permission.SEND" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH.cp" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH.local" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH.mail" fixed="false"/>
+        <permission name="com.google.android.googleapps.permission.GOOGLE_AUTH.writely" fixed="false"/>
+        <permission name="com.google.android.gtalkservice.permission.GTALK_SERVICE" fixed="false"/>
+        <permission name="org.microg.gms.EXTENDED_ACCESS" fixed="false"/>
+        <permission name="org.microg.gms.STATUS_BROADCAST" fixed="false"/>
+        <permission name="org.microg.permission.FORCE_COARSE_LOCATION" fixed="false"/>
+    </exception>
+
+    <!-- MicroG GSF Proxy -->
+    <exception
+            package="com.google.android.gsf">
+        <permission name="com.google.android.c2dm.permission.RECEIVE" fixed="false"/>
+        <permission name="com.google.android.c2dm.permission.SEND" fixed="false"/>
+    </exception>
+
+    <!-- Mozilla Unified NLP Backend -->
+    <exception
+            package="org.microg.nlp.backend.ichnaea">
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_NETWORK_STATE" fixed="false"/>
+        <permission name="android.permission.ACCESS_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.CHANGE_WIFI_STATE" fixed="false"/>
+        <permission name="android.permission.INTERNET" fixed="false"/>
+        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
+    </exception>
+
+    <!-- Nominatim NLP Backend -->
+    <exception
+            package="org.microg.nlp.backend.nominatim">
+        <permission name="android.permission.INTERNET" fixed="false"/>
+    </exception>
+
+</exceptions>
