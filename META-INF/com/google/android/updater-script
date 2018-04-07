@@ -1,5 +1,5 @@
 ui_print(" ");
-ui_print(" ********* Custom MicroG installer *********");
+ui_print(" ******** NoGooLag MicroG Installer ********");
 ui_print(" * Fully working MicroG pack like no other *");
 ui_print(" ");
 ui_print(" Included packages:");
@@ -13,13 +13,13 @@ ui_print(" - Latest Mozilla Unified NLP Backend");
 ui_print(" - Latest Nominatim NLP Backend");
 ui_print(" - Google Calendar Sync Adapter");
 ui_print(" - Google Contacts Sync Adapter");
-ui_print(" - Google Camera Support");
+ui_print(" - Google Keyboard Support");
 ui_print(" - Google Maps Support");
 ui_print(" - Latest Google Play Store");
 ui_print(" - OTA auto backup/restore script");
 ui_print(" ");
-ui_print(" Repack date      : April, 5 2018");
-ui_print(" Official Channel : @NoGooLag (Telegram)");
+ui_print(" Repack Date      : April, 5th 2018");
+ui_print(" Telegram Channel : @NoGooLag");
 ui_print(" ");
 ui_print(" *******************************************");
 ui_print(" ");
@@ -42,7 +42,7 @@ endif;
 
 ui_print(" Removing any conflicting apps...");
 
-# Google Packages
+# GApps Packages
 #
 # App
 delete_recursive(
@@ -110,8 +110,8 @@ delete_recursive(
 	"/system/priv-app/SetupWizard",
 	"/system/priv-app/StorageManagerGoogle",
 	"/system/priv-app/TagGoogle",
-	"/system/priv-app/Velvet",
-	"/system/priv-app/Turbo"
+	"/system/priv-app/Turbo",
+	"/system/priv-app/Velvet"
 );
 # Extras
 delete_recursive(
@@ -149,13 +149,19 @@ delete_recursive(
 	"/system/lib/libjni_latinimegoogle.so"
 );
 
-# Non-Google Packages
+# NoGooLag Packages
 #
 # App
 delete_recursive(
+	"/system/app/DejaVuLocationService",
+	"/system/app/DroidGuard",
 	"/system/app/GsfProxy",
+	"/system/app/LocalGSMNLPBackend",
+	"/system/app/LocalWiFiNLPBackend",
 	"/system/app/MozillaNlpBackend",
-	"/system/app/NominatimNlpBackend"
+	"/system/app/MozillaUnifiedNLPBackend",
+	"/system/app/NominatimNlpBackend",
+	"/system/app/NominatimNLPBackend"
 );
 # Priv-App
 delete_recursive(
@@ -188,12 +194,12 @@ assert(set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "fmode", 0
 # Swipe arc specific lib
 if is_substring("64", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
 then
-	ui_print(" Installing a 64bit Swipe library...");
-	assert(package_extract_dir("lib64", "/system/lib64") == "t");
+	ui_print(" Installing 64bit IME Swype support library...");
+	assert(package_extract_dir("swypelibs/lib64", "/system/lib64") == "t");
 	set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
 else
-	ui_print(" Installing a 32bit Swipe library...");
-	assert(package_extract_dir("lib", "/system/lib") == "t");
+	ui_print(" Installing 32bit IME Swype support library...");
+	assert(package_extract_dir("swypelibs/lib", "/system/lib") == "t");
 	set_perm(0, 2000, 0644, "/system/lib/libjni_latinimegoogle.so");
 endif;
 
