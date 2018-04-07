@@ -1,46 +1,55 @@
 ui_print(" ");
-ui_print(" ******** NoGooLag MicroG Installer ********");
-ui_print(" * Fully working MicroG pack like no other *");
 ui_print(" ");
-ui_print(" Included packages:");
-ui_print(" - Latest MicroG Services Core");
-ui_print(" - Latest MicroG Services Framework Proxy");
-ui_print(" - Latest MicroG DroidGuard Helper");
-ui_print(" - Latest Deja Vu Location Service");
-ui_print(" - Latest Local GSM Location Service");
-ui_print(" - Latest Local Wi-Fi Location Service");
-ui_print(" - Latest Mozilla Unified NLP Backend");
-ui_print(" - Latest Nominatim NLP Backend");
-ui_print(" - Google Calendar Sync Adapter");
-ui_print(" - Google Contacts Sync Adapter");
-ui_print(" - Google Keyboard Support");
-ui_print(" - Google Maps Support");
-ui_print(" - Latest Google Play Store");
-ui_print(" - OTA auto backup/restore script");
+ui_print("*********** NoGooLag MicroG Installer ***********");
+ui_print("*                                               *");
+ui_print("*                                               *");
+ui_print("*    Fully working MicroG pack like no other    *");
+ui_print("*                                               *");
+ui_print("*                                               *");
+ui_print("*************************************************");
+ui_print("*                                               *");
+ui_print("*         Release Date: April, 7th 2018         *");
+ui_print("*                                               *");
+ui_print("*************************************************");
 ui_print(" ");
-ui_print(" Repack Date      : April, 5th 2018");
-ui_print(" Telegram Channel : @NoGooLag");
+ui_print("Included packages:");
+ui_print("- Latest MicroG Services Core");
+ui_print("- Latest MicroG Services Framework Proxy");
+ui_print("- Latest MicroG DroidGuard Helper");
+ui_print("- Latest Deja Vu Location Service");
+ui_print("- Latest Local GSM Location Service");
+ui_print("- Latest Local Wi-Fi Location Service");
+ui_print("- Latest Mozilla Unified NLP Backend");
+ui_print("- Latest Nominatim NLP Backend");
+ui_print("- Google Calendar Sync Adapter");
+ui_print("- Google Contacts Sync Adapter");
+ui_print("- Google Keyboard Support");
+ui_print("- Google Maps Support");
+ui_print("- Latest Google Play Store");
+ui_print("- OTA auto backup/restore script");
 ui_print(" ");
-ui_print(" *******************************************");
+ui_print("*************************************************");
 ui_print(" ");
 
-ui_print(" Mounting /system...");
+# Check CPU architecture
+# Abort if not ARM/ARM64
+if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
+then
+	ui_print("ARM/ARM64 CPU detected, proceeding...");
+	ui_print(" ");
+else
+	abort("X86/X86_64 CPU is not supported, aborting...");
+	ui_print(" ");
+	ui_print("*************************************************");
+	ui_print(" ");
+	ui_print(" ");
+endif;
+
+ui_print("Mounting /system...");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 
-# Check CPU architecture
-# Abort if not ARM
-if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
-then
-	ui_print(" ");
-	ui_print(" ARM CPU Architecture detected, proceeding...");
-	ui_print(" ");
-else
-	abort(" CPU doesn't have an ARM architecture, aborting...");
-	ui_print(" *******************************************");
-endif;
-
-ui_print(" Removing any conflicting apps...");
+ui_print("Removing any conflicting apps...");
 
 # GApps Packages
 #
@@ -178,10 +187,22 @@ delete_recursive(
 	"/system/priv-app/PrebuiltGmsCore"
 );
 
-ui_print(" Installing to /system...");
+ui_print("Installing NoGooLag MicroG Packs...");
 assert(package_extract_dir("system", "/system") == "t");
 
-ui_print(" Setting permissions...");
+# Swipe arc specific lib
+if is_substring("64", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
+then
+	ui_print("Installing 64bit IME Swype support library...");
+	assert(package_extract_dir("swypelibs/lib64", "/system/lib64") == "t");
+	set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
+else
+	ui_print("Installing 32bit IME Swype support library...");
+	assert(package_extract_dir("swypelibs/lib", "/system/lib") == "t");
+	set_perm(0, 2000, 0644, "/system/lib/libjni_latinimegoogle.so");
+endif;
+
+ui_print("Settings up permissions...");
 assert(set_metadata_recursive("/system/addon.d", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/etc/default-permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
@@ -191,22 +212,16 @@ assert(set_metadata_recursive("/system/etc/sysconfig", "uid", 0, "gid", 0, "fmod
 assert(set_metadata_recursive("/system/framework", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 
-# Swipe arc specific lib
-if is_substring("64", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
-then
-	ui_print(" Installing 64bit IME Swype support library...");
-	assert(package_extract_dir("swypelibs/lib64", "/system/lib64") == "t");
-	set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
-else
-	ui_print(" Installing 32bit IME Swype support library...");
-	assert(package_extract_dir("swypelibs/lib", "/system/lib") == "t");
-	set_perm(0, 2000, 0644, "/system/lib/libjni_latinimegoogle.so");
-endif;
-
-ui_print(" Unmounting /system...");
+ui_print("Unmounting /system...");
 unmount("/system");
 
-ui_print(" Done!");
 ui_print(" ");
-ui_print(" *******************************************");
+ui_print("*************************************************");
+ui_print("*                                               *");
+ui_print("*                  Done, GLHF!                  *");
+ui_print("*                                               *");
+ui_print("*      Join with us on Telegram: @NoGooLag      *");
+ui_print("*                                               *");
+ui_print("*************************************************");
+ui_print(" ");
 ui_print(" ");
