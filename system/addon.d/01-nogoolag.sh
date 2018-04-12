@@ -10,6 +10,7 @@
 
 list_files() {
 cat <<EOF
+app/AppleUnifiedNLPBackend/AppleUnifiedNLPBackend.apk
 app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
 app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
 etc/default-permissions/default-permissions.xml

@@ -8,24 +8,25 @@ ui_print("*                                               *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print("*                                               *");
-ui_print("*         Release Date: April, 7th 2018         *");
+ui_print("*        Release Date:  April, 12th 2018        *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print(" ");
 ui_print("Included packages:");
-ui_print("- Latest MicroG Services Core");
-ui_print("- Latest MicroG Services Framework Proxy");
-ui_print("- Latest MicroG DroidGuard Helper");
-ui_print("- Latest Deja Vu Location Service");
-ui_print("- Latest Local GSM Location Service");
-ui_print("- Latest Local Wi-Fi Location Service");
-ui_print("- Latest Mozilla Unified NLP Backend");
-ui_print("- Latest Nominatim NLP Backend");
 ui_print("- Google Calendar Sync Adapter");
 ui_print("- Google Contacts Sync Adapter");
 ui_print("- Google Keyboard Support");
 ui_print("- Google Maps Support");
+ui_print("- Latest Apple Unified NLP Backend");
+ui_print("- Latest Deja Vu Location Service");
 ui_print("- Latest Google Play Store");
+ui_print("- Latest Local GSM Location Service");
+ui_print("- Latest Local Wi-Fi Location Service");
+ui_print("- Latest MicroG DroidGuard Helper");
+ui_print("- Latest MicroG Services Core");
+ui_print("- Latest MicroG Services Framework Proxy");
+ui_print("- Latest Mozilla Unified NLP Backend");
+ui_print("- Latest Nominatim NLP Backend");
 ui_print("- OTA auto backup/restore script");
 ui_print(" ");
 ui_print("*************************************************");
@@ -162,6 +163,7 @@ delete_recursive(
 #
 # App
 delete_recursive(
+	"/system/app/AppleUnifiedNLPBackend",
 	"/system/app/DejaVuLocationService",
 	"/system/app/DroidGuard",
 	"/system/app/GsfProxy",
@@ -169,11 +171,12 @@ delete_recursive(
 	"/system/app/LocalWiFiNLPBackend",
 	"/system/app/MozillaNlpBackend",
 	"/system/app/MozillaUnifiedNLPBackend",
-	"/system/app/NominatimNlpBackend",
-	"/system/app/NominatimNLPBackend"
+	"/system/app/NominatimNLPBackend",
+	"/system/app/NominatimNlpBackend"
 );
 # Priv-App
 delete_recursive(
+	"/system/priv-app/AppleUnifiedNLPBackend",
 	"/system/priv-app/DejaVuLocationService",
 	"/system/priv-app/DroidGuard",
 	"/system/priv-app/FakeStore",
@@ -185,6 +188,10 @@ delete_recursive(
 	"/system/priv-app/NominatimNLPBackend",
 	"/system/priv-app/Phonesky",
 	"/system/priv-app/PrebuiltGmsCore"
+);
+# Backup/Restore Scripts
+delete(
+	"/system/addon.d/01-microg-playstore.sh"
 );
 
 ui_print("Installing NoGooLag MicroG Packs...");
