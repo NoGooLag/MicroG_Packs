@@ -15,7 +15,11 @@
 -->
 
 <config>
-
+    <!-- GmsCore must always have network access for GCM and other things. -->
+    <allow-in-power-save package="com.google.android.gms" />
+    <allow-in-data-usage-save package="com.google.android.gms" />
+    <allow-unthrottled-location package="com.google.android.gms" />
+	
     <!-- These are the standard packages that are white-listed to always have internet
          access while in power save mode, even if they aren't in the foreground. -->
 
