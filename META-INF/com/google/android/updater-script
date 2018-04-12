@@ -21,7 +21,6 @@ ui_print("- Latest F-Droid Privileged Extension");
 ui_print("- Latest Galaxy Store");
 ui_print("- Latest Local GSM Location Service");
 ui_print("- Latest Local Wi-Fi Location Service");
-ui_print("- Latest MicroG DroidGuard Helper");
 ui_print("- Latest MicroG Fake Store");
 ui_print("- Latest MicroG Services Core");
 ui_print("- Latest MicroG Services Framework Proxy");
@@ -197,7 +196,7 @@ delete_recursive(
 );
 # Backup/Restore Scripts
 delete(
-	"/system/addon.d/01-microg-playstore.sh"
+	"/system/addon.d/01-nogoolag.sh"
 );
 
 ui_print("Installing NoGooLag MicroG Packs...");
