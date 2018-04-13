@@ -33,6 +33,7 @@ ui_print(" ");
 
 # Check CPU architecture
 # Abort if not ARM/ARM64
+ui_print("Detecting CPU architecture...");
 if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
 then
 	ui_print("ARM/ARM64 CPU detected, proceeding...");
