@@ -11,6 +11,7 @@
 list_files() {
 cat <<EOF
 app/FDroid/FDroid.apk
+app/Galaxy/Galaxy.apk
 priv-app/AppleUnifiedNLPBackend/AppleUnifiedNLPBackend.apk
 priv-app/DejaVuLocationService/DejaVuLocationService.apk
 priv-app/DroidGuard/DroidGuard.apk

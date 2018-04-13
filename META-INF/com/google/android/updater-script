@@ -166,6 +166,7 @@ delete_recursive(
 	"/system/app/DejaVuLocationService",
 	"/system/app/DroidGuard",
 	"/system/app/FDroid",
+	"/system/app/Galaxy",
 	"/system/app/GsfProxy",
 	"/system/app/LocalGSMNLPBackend",
 	"/system/app/LocalWiFiNLPBackend",
@@ -190,10 +191,6 @@ delete_recursive(
 	"/system/priv-app/Phonesky",
 	"/system/priv-app/PrebuiltGmsCore"
 );
-# Data App
-delete_recursive(
-	"/data/app/Galaxy"
-);
 # Backup/Restore Scripts
 delete(
 	"/system/addon.d/01-nogoolag.sh"
@@ -201,11 +198,9 @@ delete(
 
 ui_print("Installing NoGooLag MicroG Packs...");
 assert(package_extract_dir("system", "/system") == "t");
-assert(package_extract_dir("data", "/data") == "t");
 
 ui_print("Settings up permissions...");
 assert(set_metadata_recursive("/system/addon.d", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/data/app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/etc/permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
 assert(set_metadata_recursive("/system/etc/sysconfig", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
