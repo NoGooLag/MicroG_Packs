@@ -34,6 +34,7 @@ ui_print(" ");
 
 # Check CPU architecture
 # Abort if not ARM/ARM64
+ui_print("Detecting CPU architecture...");
 if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
 then
 	ui_print("ARM/ARM64 CPU detected, proceeding...");
@@ -46,11 +47,16 @@ else
 	ui_print(" ");
 endif;
 
+ui_print("Mounting /system...");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+
 # Check Android version
 # Abort if older than Nougat
-if greater_than_int(getprop(ro.build.version.sdk), 23)
+ui_print("Detecting Android version...");
+if greater_than_int(file_getprop("/system/build.prop", "ro.build.version.sdk"), 23)
 then
-	ui_print("Android version Nougat or newer detected, proceeding...");
+	ui_print("Android version is Nougat or newer, proceeding...");
 	ui_print(" ");
 else
 	abort("Android versions older than Nougat are not supported, aborting...");
@@ -59,10 +65,6 @@ else
 	ui_print(" ");
 	ui_print(" ");
 endif;
-
-ui_print("Mounting /system...");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
 
 ui_print("Removing any conflicting apps...");
 
@@ -210,14 +212,16 @@ delete_recursive(
 );
 # LOS specific
 # Don't remove FDroid if it's LOS since it comes preinstalled with the microG version
-if !is_substring("lineage", getprop(ro.build.display.id))
+ui_print("Checking for Lineage OS...");
+if !is_substring("lineage", file_getprop("/system/build.prop", "ro.build.flavor"))
 then
+	ui_print("Lineage OS not found, F-Droid will be removed if present...");
 	delete_recursive(
 	"/system/app/FDroid",
 	"/system/priv-app/FDroidPrivilegedExtension"
 );
 else
-	ui_print("Lineage OS detected, FDroid won't be removed...");
+	ui_print("Lineage OS detected, F-Droid won't be removed...");
 endif;
 
 # Backup/Restore Scripts
