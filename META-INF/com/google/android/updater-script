@@ -55,10 +55,10 @@ run_program("/sbin/busybox", "mount", "/system");
 ui_print("Detecting Android version...");
 if greater_than_int(file_getprop("/system/build.prop", "ro.build.version.sdk"), 23)
 then
-	ui_print("Android version is Nougat or newer, proceeding...");
+	ui_print("Nougat or newer found, proceeding...");
 	ui_print(" ");
 else
-	abort("Android versions older than Nougat are not supported, aborting...");
+	abort("Marshmallow or older not supported, aborting...");
 	ui_print(" ");
 	ui_print("*************************************************");
 	ui_print(" ");
