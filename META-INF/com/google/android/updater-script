@@ -9,12 +9,11 @@ ui_print("*                                               *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print("*                                               *");
-ui_print("*        Release Date:  April, 12th 2018        *");
+ui_print("*        Release Date:  April, 13th 2018        *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print(" ");
 ui_print("Included packages:");
-ui_print("- Latest Apple Unified NLP Backend");
 ui_print("- Latest Deja Vu Location Service");
 ui_print("- Latest F-Droid");
 ui_print("- Latest F-Droid Privileged Extension");
@@ -168,7 +167,6 @@ delete_recursive(
 );
 # App
 delete_recursive(
-	"/system/app/AppleUnifiedNLPBackend",
 	"/system/app/DejaVuLocationService",
 	"/system/app/DroidGuard",
 	"/system/app/FDroid",
@@ -183,7 +181,6 @@ delete_recursive(
 );
 # Priv-App
 delete_recursive(
-	"/system/priv-app/AppleUnifiedNLPBackend",
 	"/system/priv-app/DejaVuLocationService",
 	"/system/priv-app/DroidGuard",
 	"/system/priv-app/FakeStore",
