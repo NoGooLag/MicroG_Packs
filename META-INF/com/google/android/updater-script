@@ -46,6 +46,20 @@ else
 	ui_print(" ");
 endif;
 
+# Check Android version
+# Abort if older than Nougat
+if greater_than_int(getprop(ro.build.version.sdk), 23)
+then
+	ui_print("Android version Nougat or newer detected, proceeding...");
+	ui_print(" ");
+else
+	abort("Android versions older than Nougat are not supported, aborting...");
+	ui_print(" ");
+	ui_print("*************************************************");
+	ui_print(" ");
+	ui_print(" ");
+endif;
+
 ui_print("Mounting /system...");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
@@ -161,6 +175,11 @@ delete_recursive(
 
 # NoGooLag Packages
 #
+# Permissions
+delete_recursive(
+	"/system/etc/permissions/privapp-permissions-nogoolag.xml",
+	"/system/etc/sysconfig/nogoolag.xml"
+);
 # App
 delete_recursive(
 	"/system/app/AppleUnifiedNLPBackend",
@@ -189,9 +208,21 @@ delete_recursive(
 	"/system/priv-app/Phonesky",
 	"/system/priv-app/PrebuiltGmsCore"
 );
+# LOS specific
+# Don't remove FDroid if it's LOS since it comes preinstalled with the microG version
+if !is_substring("lineage", getprop(ro.build.display.id))
+then
+	delete_recursive(
+	"/system/app/FDroid",
+	"/system/priv-app/FDroidPrivilegedExtension"
+);
+else
+	ui_print("Lineage OS detected, FDroid won't be removed...");
+endif;
+
 # Backup/Restore Scripts
 delete(
-	"/system/addon.d/01-microg-playstore.sh"
+	"/system/addon.d/01-nogoolag.sh"
 );
 
 ui_print("Installing NoGooLag MicroG Packs...");
