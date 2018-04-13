@@ -1,6 +1,6 @@
 ui_print(" ");
 ui_print(" ");
-ui_print("*********** NoGooLag MicroG Installer ***********");
+ui_print("********** NoGooLag MicroG Uninstaller **********");
 ui_print("*                                               *");
 ui_print("*                                               *");
 ui_print("*    Fully working MicroG pack like no other    *");
@@ -12,245 +12,89 @@ ui_print("*        Release Date:  April, 13th 2018        *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print(" ");
-ui_print("Included packages:");
+ui_print("Packages to be removed:");
+ui_print("- Deja Vu Location Service");
+ui_print("- F-Droid");
+ui_print("- F-Droid Privileged Extension");
+ui_print("- Galaxy Store");
 ui_print("- Google Calendar Sync Adapter");
 ui_print("- Google Contacts Sync Adapter");
 ui_print("- Google Keyboard Support");
 ui_print("- Google Maps Support");
-ui_print("- Latest Deja Vu Location Service");
-ui_print("- Latest Google Play Store");
-ui_print("- Latest Local GSM Location Service");
-ui_print("- Latest Local Wi-Fi Location Service");
-ui_print("- Latest MicroG DroidGuard Helper");
-ui_print("- Latest MicroG Services Core");
-ui_print("- Latest MicroG Services Framework Proxy");
-ui_print("- Latest Mozilla Unified NLP Backend");
-ui_print("- Latest Nominatim NLP Backend");
+ui_print("- Google Play Store");
+ui_print("- Local GSM Location Service");
+ui_print("- Local Wi-Fi Location Service");
+ui_print("- MicroG DroidGuard Helper");
+ui_print("- MicroG Services Core");
+ui_print("- MicroG Services Framework Proxy");
+ui_print("- Mozilla Unified NLP Backend");
+ui_print("- Nominatim NLP Backend");
 ui_print("- OTA auto backup/restore script");
 ui_print(" ");
 ui_print("*************************************************");
 ui_print(" ");
 
-# Check CPU architecture
-# Abort if not ARM/ARM64
-ui_print("Detecting CPU architecture...");
-if is_substring("arm", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
-then
-	ui_print("ARM/ARM64 CPU detected, proceeding...");
-	ui_print(" ");
-else
-	abort("X86/X86_64 CPU is not supported, aborting...");
-	ui_print(" ");
-	ui_print("*************************************************");
-	ui_print(" ");
-	ui_print(" ");
-endif;
-
 ui_print("Mounting /system...");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
+ui_print(" ");
 
-# Check Android version
-# Abort if older than Nougat
-ui_print("Detecting Android version...");
-if greater_than_int(file_getprop("/system/build.prop", "ro.build.version.sdk"), 23)
-then
-	ui_print("Nougat or newer found, proceeding...");
-	ui_print(" ");
-else
-	abort("Marshmallow or older not supported, aborting...");
-	ui_print(" ");
-	ui_print("*************************************************");
-	ui_print(" ");
-	ui_print(" ");
-endif;
-
-ui_print("Removing any conflicting apps...");
-
-# GApps Packages
-#
-# App
+ui_print("Removing Deja Vu Location Service...");
+delete_recursive("/system/priv-app/DejaVuLocationService");
+ui_print("Removing F-Droid...");
+delete_recursive("/system/app/FDroid");
+ui_print("Removing F-Droid Privileged Extension...");
+delete_recursive("/system/priv-app/FDroidPrivilegedExtension");
+ui_print("Removing Galaxy Store...");
+delete_recursive("/system/app/Galaxy");
+ui_print("Removing Google Calendar Sync Adapter...");
+delete_recursive("/system/app/GoogleCalendarSyncAdapter");
+ui_print("Removing Google Contacts Sync Adapter...");
+delete_recursive("/system/app/GoogleContactsSyncAdapter");
+ui_print("Removing Google Keyboard Support...");
 delete_recursive(
-	"/system/app/Books",
-	"/system/app/CalculatorGooglePrebuilt",
-	"/system/app/CalendarGooglePrebuilt",
-	"/system/app/Chrome",
-	"/system/app/CloudPrint2",
-	"/system/app/Drive",
-	"/system/app/Duo",
-	"/system/app/EditorsDocs",
-	"/system/app/EditorsSheets",
-	"/system/app/EditorsSlides",
-	"/system/app/FaceLock",
-	"/system/app/FitnessPrebuilt",
-	"/system/app/GoogleCalendarSyncAdapter",
-	"/system/app/GoogleCamera",
-	"/system/app/GoogleCameraLegacy",
-	"/system/app/GoogleContacts",
-	"/system/app/GoogleContactsSyncAdapter",
-	"/system/app/GoogleExtShared",
-	"/system/app/GoogleHome",
-	"/system/app/GooglePrintRecommendationService",
-	"/system/app/GoogleTTS",
-	"/system/app/GoogleVrCore",
-	"/system/app/Hangouts",
-	"/system/app/LatinIMEGooglePrebuilt",
-	"/system/app/Maps",
-	"/system/app/Music2",
-	"/system/app/Newsstand",
-	"/system/app/NexusLauncherIcons",
-	"/system/app/Photos",
-	"/system/app/Photos",
-	"/system/app/PlayGames",
-	"/system/app/PlusOne",
-	"/system/app/PrebuiltBugle",
-	"/system/app/PrebuiltDeskClockGoogle",
-	"/system/app/PrebuiltExchange3Google",
-	"/system/app/PrebuiltGmail",
-	"/system/app/PrebuiltKeep",
-	"/system/app/PrebuiltNewsWeather",
-	"/system/app/talkback",
-	"/system/app/Videos",
-	"/system/app/WallpaperPickerGooglePrebuilt",
-	"/system/app/WebViewGoogle",
-	"/system/app/WebViewStub",
-	"/system/app/YouTube"
+	"/system/lib64/libjni_latinimegoogle.so",
+	"/system/lib/libjni_latinimegoogle.so"
 );
-# Priv-App
-delete_recursive(
-	"/system/priv-app/AndroidPlatformServices",
-	"/system/priv-app/ConfigUpdater",
-	"/system/priv-app/GmsCoreSetupPrebuilt",
-	"/system/priv-app/GoogleBackupTransport",
-	"/system/priv-app/GoogleDialer",
-	"/system/priv-app/GoogleExtServices",
-	"/system/priv-app/GoogleFeedback",
-	"/system/priv-app/GoogleOneTimeInitializer",
-	"/system/priv-app/GooglePackageInstaller",
-	"/system/priv-app/GooglePartnerSetup",
-	"/system/priv-app/GoogleServicesFramework",
-	"/system/priv-app/NexusLauncherPrebuilt",
-	"/system/priv-app/Phonesky",
-	"/system/priv-app/PrebuiltGmsCore",
-	"/system/priv-app/SetupWizard",
-	"/system/priv-app/StorageManagerGoogle",
-	"/system/priv-app/TagGoogle",
-	"/system/priv-app/Turbo",
-	"/system/priv-app/Velvet"
-);
-# Extras
+ui_print("Removing Google Maps Support...");
 delete_recursive(
 	"/system/etc/default-permissions/default-permissions.xml",
 	"/system/etc/default-permissions/opengapps-permissions.xml",
-	"/system/etc/permissions/com.google.android.camera2.xml",
-	"/system/etc/permissions/com.google.android.camera.experimental2016.xml",
-	"/system/etc/permissions/com.google.android.dialer.support.xml",
 	"/system/etc/permissions/com.google.android.maps.xml",
 	"/system/etc/permissions/com.google.android.media.effects.xml",
-	"/system/etc/permissions/com.google.vr.platform.xml",
 	"/system/etc/permissions/com.google.widevine.software.drm.xml",
 	"/system/etc/permissions/privapp-permissions-google.xml",
+	"/system/etc/permissions/privapp-permissions-nogoolag.xml",
 	"/system/etc/preferred-apps/google.xml",
-	"/system/etc/sysconfig/dialer_experience.xml",
 	"/system/etc/sysconfig/framework-sysconfig.xml",
 	"/system/etc/sysconfig/google_build.xml",
-	"/system/etc/sysconfig/google_vr_build.xml",
 	"/system/etc/sysconfig/google.xml",
+	"/system/etc/sysconfig/nogoolag.xml",
 	"/system/etc/sysconfig/whitelist_com.android.omadm.service.xml",
-	"/system/framework/com.google.android.camera2.jar",
-	"/system/framework/com.google.android.camera.experimental2016.jar",
-	"/system/framework/com.google.android.dialer.support.jar",
 	"/system/framework/com.google.android.maps.jar",
 	"/system/framework/com.google.android.media.effects.jar",
-	"/system/framework/com.google.vr.platform.jar",
-	"/system/framework/com.google.widevine.software.drm.jar",
-	"/system/lib64/libfacenet.so",
-	"/system/lib64/libfilterpack_facedetect.so",
-	"/system/lib64/libfrsdk.so",
-	"/system/lib64/libjni_latinimegoogle.so",
-	"/system/lib/libfacenet.so",
-	"/system/lib/libfilterpack_facedetect.so",
-	"/system/lib/libfrsdk.so",
-	"/system/lib/libjni_latinimegoogle.so"
+	"/system/framework/com.google.widevine.software.drm.jar"
 );
+ui_print("Removing Play Store...");
+delete_recursive("/system/priv-app/Phonesky");
+ui_print("Removing Local GSM Location Service");
+delete_recursive("/system/priv-app/LocalGSMNLPBackend");
+ui_print("Removing Local Wi-Fi Location Service");
+delete_recursive("/system/priv-app/LocalWiFiNLPBackend");
+ui_print("Removing MicroG DroidGuard Helper");
+delete_recursive("/system/priv-app/DroidGuard");
+ui_print("Removing MicroG Services Core");
+delete_recursive("/system/priv-app/PrebuiltGmsCore");
+ui_print("Removing MicroG Services Framework Proxy");
+delete_recursive("/system/priv-app/GoogleServicesFramework");
+ui_print("Removing Mozilla Unified NLP Backend");
+delete_recursive("/system/priv-app/MozillaUnifiedNLPBackend");
+ui_print("Removing Nominatim NLP Backend");
+delete_recursive("/system/priv-app/NominatimNLPBackend");
+ui_print("Removing OTA auto backup/restore script");
+delete("/system/addon.d/01-nogoolag.sh");
 
-# NoGooLag Packages
-#
-# Permissions
-delete_recursive(
-	"/system/etc/permissions/privapp-permissions-nogoolag.xml",
-	"/system/etc/sysconfig/nogoolag.xml"
-);
-# App
-delete_recursive(
-	"/system/app/DejaVuLocationService",
-	"/system/app/DroidGuard",
-	"/system/app/GsfProxy",
-	"/system/app/LocalGSMNLPBackend",
-	"/system/app/LocalWiFiNLPBackend",
-	"/system/app/MozillaNlpBackend",
-	"/system/app/MozillaUnifiedNLPBackend",
-	"/system/app/NominatimNLPBackend",
-	"/system/app/NominatimNlpBackend"
-);
-# Priv-App
-delete_recursive(
-	"/system/priv-app/DejaVuLocationService",
-	"/system/priv-app/DroidGuard",
-	"/system/priv-app/FakeStore",
-	"/system/priv-app/GmsCore",
-	"/system/priv-app/GoogleServicesFramework",
-	"/system/priv-app/LocalGSMNLPBackend",
-	"/system/priv-app/LocalWiFiNLPBackend",
-	"/system/priv-app/MozillaUnifiedNLPBackend",
-	"/system/priv-app/NominatimNLPBackend",
-	"/system/priv-app/Phonesky",
-	"/system/priv-app/PrebuiltGmsCore"
-);
-# LOS specific
-# Don't remove FDroid if it's LOS since it comes preinstalled with the microG version
-ui_print("Checking for Lineage OS...");
-if !is_substring("lineage", file_getprop("/system/build.prop", "ro.build.flavor"))
-then
-	ui_print("Lineage OS not found, F-Droid will be removed if present...");
-	delete_recursive(
-	"/system/app/FDroid",
-	"/system/priv-app/FDroidPrivilegedExtension"
-);
-else
-	ui_print("Lineage OS detected, F-Droid won't be removed...");
-endif;
-
-# Backup/Restore Scripts
-delete(
-	"/system/addon.d/01-nogoolag.sh"
-);
-
-ui_print("Installing NoGooLag MicroG Packs...");
-assert(package_extract_dir("system", "/system") == "t");
-
-# Swipe arc specific lib
-if is_substring("64", concat(getprop(ro.product.cpu.abi), getprop(ro.product.cpu.abi2)))
-then
-	ui_print("Installing 64bit IME Swype support library...");
-	assert(package_extract_dir("swypelibs/lib64", "/system/lib64") == "t");
-	set_perm(0, 2000, 0644, "/system/lib64/libjni_latinimegoogle.so");
-else
-	ui_print("Installing 32bit IME Swype support library...");
-	assert(package_extract_dir("swypelibs/lib", "/system/lib") == "t");
-	set_perm(0, 2000, 0644, "/system/lib/libjni_latinimegoogle.so");
-endif;
-
-ui_print("Settings up permissions...");
-assert(set_metadata_recursive("/system/addon.d", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/etc/default-permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/etc/permissions", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/etc/preferred-apps", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/etc/sysconfig", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/framework", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-assert(set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "fmode", 0644, "dmode", 0755) == "");
-
+ui_print(" ");
 ui_print("Unmounting /system...");
 unmount("/system");
 
