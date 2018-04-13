@@ -160,6 +160,11 @@ delete_recursive(
 
 # NoGooLag Packages
 #
+# Permissions
+delete_recursive(
+	"/system/etc/permissions/privapp-permissions-nogoolag.xml"
+	"/system/etc/sysconfig/nogoolag.xml"
+);
 # App
 delete_recursive(
 	"/system/app/AppleUnifiedNLPBackend",
