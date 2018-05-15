@@ -8,7 +8,9 @@ ui_print("*                                               *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print("*                                               *");
-ui_print("*        Release Date:  April, 13th 2018        *");
+ui_print("*             Package Version: v1.4             *");
+ui_print("*                                               *");
+ui_print("*         Release Date:  May, 16th 2018         *");
 ui_print("*                                               *");
 ui_print("*************************************************");
 ui_print(" ");
@@ -21,7 +23,6 @@ ui_print("- Latest Deja Vu Location Service");
 ui_print("- Latest Google Play Store");
 ui_print("- Latest Local GSM Location Service");
 ui_print("- Latest Local Wi-Fi Location Service");
-ui_print("- Latest MicroG DroidGuard Helper");
 ui_print("- Latest MicroG Services Core");
 ui_print("- Latest MicroG Services Framework Proxy");
 ui_print("- Latest Mozilla Unified NLP Backend");
@@ -207,18 +208,18 @@ delete_recursive(
 	"/system/priv-app/Phonesky",
 	"/system/priv-app/PrebuiltGmsCore"
 );
-# LOS specific
-# Don't remove FDroid if it's LOS since it comes preinstalled with the microG version
-ui_print("Checking for Lineage OS...");
+# MicroG Lineage OS specific
+# Don't remove F-Droid if it's MicroG Lineage OS since it comes preinstalled with the MicroG version
+ui_print("Checking for MicroG Lineage OS...");
 if !is_substring("lineage", file_getprop("/system/build.prop", "ro.build.flavor"))
 then
-	ui_print("Lineage OS not found, F-Droid will be removed if present...");
+	ui_print("MicroG Lineage OS not found, F-Droid will be removed if present...");
 	delete_recursive(
 	"/system/app/FDroid",
 	"/system/priv-app/FDroidPrivilegedExtension"
 );
 else
-	ui_print("Lineage OS detected, F-Droid won't be removed...");
+	ui_print("MicroG Lineage OS detected, F-Droid won't be removed...");
 endif;
 
 # Backup/Restore Scripts

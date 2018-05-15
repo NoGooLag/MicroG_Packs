@@ -30,7 +30,6 @@ framework/com.google.widevine.software.drm.jar
 lib64/libjni_latinimegoogle.so
 lib/libjni_latinimegoogle.so
 priv-app/DejaVuLocationService/DejaVuLocationService.apk
-priv-app/DroidGuard/DroidGuard.apk
 priv-app/GoogleServicesFramework/GoogleServicesFramework.apk
 priv-app/LocalGSMNLPBackend/LocalGSMNLPBackend.apk
 priv-app/LocalWiFiNLPBackend/LocalWiFiNLPBackend.apk
